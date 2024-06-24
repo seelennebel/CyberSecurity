@@ -31,13 +31,15 @@ def HMAC_SHA512(data, key_option):
     if  key_encoding == "HEX":
         key_bytes = bytearray.fromhex(key)
     if key_encoding == "ASCII":
-        key_bytes = bytearray(key, encoding = key_encoding)
+        key_bytes = bytearray(str(key), encoding = key_encoding)
+
+    print("key", key_bytes.hex())
 
 # adding remaining zeros to the key so that it will have a size of 128 bytes
     for i in range (block_size - len(key_bytes)):
         key_bytes.append(0)
     print("size of key after apending", len(key_bytes))
-
+    print(len(key_bytes.hex()))
 # repeat the values of pads block size times
     for i in range(block_size):
         ipad_bytes[i] = 54
@@ -52,9 +54,21 @@ def HMAC_SHA512(data, key_option):
     key_bytes_int = int(key_bytes.hex(), 16)
 
 # doing inner xor and then initializing the result to bytearray
-    inner_xor = key_bytes_int ^ ipad_bytes_int
-    inner_bytes = bytearray.fromhex(hex(inner_xor)[2:]) # implement the initialization for ASCII key
+    tmp_inner_xor_int = key_bytes_int ^ ipad_bytes_int
+    tmp_inner_xor_hex = hex(tmp_inner_xor_int)
 
+# checking if XOR result is 256 and if not it inserts zero to the first place (values remain the same even if 0 is inserted at the beginning of the hex number)
+    if len(tmp_inner_xor_hex) == 255:
+        inner_xor = "0" + tmp_inner_xor_hex[2:]
+        inner_bytes = bytearray.fromhex(inner_xor)
+        print("\n")
+        print(hex(tmp_inner_xor_int))
+        print(inner_xor)
+        print("\n")
+    else:
+        inner_xor = tmp_inner_xor_int
+        inner_bytes = bytearray.fromhex(hex(inner_xor)[2:]) # implement the initialization for ASCII key
+    
     print("size after first XOR:", len(inner_bytes))
 # appending data to the previous result
     inner_bytes.extend(data_bytes)
@@ -71,4 +85,3 @@ def HMAC_SHA512(data, key_option):
 
 # returning in hex format
     return SHA512_2.digest().hex()
-
