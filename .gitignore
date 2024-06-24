@@ -130,8 +130,12 @@ dist
 .pnp.*
 
 
-#mine
+# PYTHON
 
 .venv
 venv
 __pycache__
+
+# SYSTEM
+.DS_Store
+DS_Store

@@ -1,4 +1,9 @@
 # HMAC RFC2104
+# ONLY SUPPORTS sha512 with hex key
+
+#TO DO
+# 1) Implement MD5 - Andrey or Akerke???
+# 2) Make options handling better - Akerke
 
 from sha512 import HMAC_SHA512
 from md5 import HMAC_MD5
@@ -50,34 +55,34 @@ if __name__ == "__main__":
                 options[args[i]] = args[i + 1]
 
 # check if -f and -d options are not empty and initializes hash and data variables
-    if options["-f"] != "" and options["-d"] != "" and (options["-hex"] != "" or options["-ascii"] != ""):
-        hash_function = options["-f"]
-        data = options["-d"]
-    else:
-        raise Exception("ERROR, provide required arguments")
+        if options["-f"] != "" and options["-d"] != "" and (options["-hex"] != "" or options["-ascii"] != ""):
+            hash_function = options["-f"]
+            data = options["-d"]
+        else:
+            raise Exception("ERROR, provide required arguments")
 
 # checks which hash function and key encoding to use
 
-    if hash_function == "sha512":
-        if options["-hex"] != "":
-            hex_key = options["-hex"]
-            HMAC_SHA512(data, {"encoding" : "HEX", "key" : hex_key})
-        elif options["-ascii"] != "":
-            ascii_key = options["-ascii"]
-            HMAC_SHA512(data, {"encoding" : "ASCII", "key" : ascii_key})
-        else:
-            raise Exception("ERROR: no key is provided or invalid option")
+        if hash_function == "sha512":
+            if options["-hex"] != "":
+                hex_key = options["-hex"]
+                print(HMAC_SHA512(data, {"encoding" : "HEX", "key" : hex_key}))
+            elif options["-ascii"] != "":
+                ascii_key = options["-ascii"]
+                print(HMAC_SHA512(data, {"encoding" : "ASCII", "key" : ascii_key}))
+            else:
+                raise Exception("ERROR: no key is provided or invalid option")
+            
+        elif hash_function == "md5":
+            if options["-hex"] != "":
+                hex_key = options["-hex"]
+                HMAC_MD5(data, {"encoding" : "HEX", "key" : hex_key})
+            elif options["-ascii"] != "":
+                ascii_key = options["-ascii"]
+                HMAC_MD5(data, {"encoding" : "ASCII", "key" : ascii_key})
+            else:
+                raise Exception("ERROR: no key is provided or invalid option")
         
-    elif hash_function == "md5":
-        if options["-hex"] != "":
-            hex_key = options["-hex"]
-            HMAC_MD5(data, {"encoding" : "HEX", "key" : hex_key})
-        elif options["-ascii"] != "":
-            ascii_key = options["-ascii"]
-            HMAC_MD5(data, {"encoding" : "ASCII", "key" : ascii_key})
         else:
-            raise Exception("ERROR: no key is provided or invalid option")
-    
-    else:
-        raise Exception("ERROR: wrong hash function")
+            raise Exception("ERROR: wrong hash function")
 

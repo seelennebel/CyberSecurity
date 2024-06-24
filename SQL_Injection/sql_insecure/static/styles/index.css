@@ -1,0 +1,50 @@
+body
+{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+#search-button
+{
+    margin-left: 3em;
+    font-size: 1.5em;
+}
+
+#search-bar-container
+{
+    align-items: center;
+    justify-content: space-around;
+}
+
+#search-bar
+{
+    padding: 0;
+    width: 10em;
+    font-size: 1.8em;
+}
+
+#forum-name
+{
+    color: white;
+}
+
+#sub-main-container
+{
+    align-items: center;
+    justify-content: center;
+}
+
+#main-container
+{
+    align-items: center;
+    justify-content: space-around;
+}
+
+#navbar-container
+{
+    align-items: center;
+    justify-content: space-around;
+    border: 2px white solid;
+}
