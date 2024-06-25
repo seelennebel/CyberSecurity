@@ -1,9 +1,4 @@
 # HMAC RFC2104
-# ONLY SUPPORTS sha512 with hex key
-
-#TO DO
-# 1) Implement MD5 - Andrey or Akerke???
-# 2) Make options handling better - Akerke
 
 from sha512 import HMAC_SHA512
 from md5 import HMAC_MD5
@@ -76,10 +71,10 @@ if __name__ == "__main__":
         elif hash_function == "md5":
             if options["-hex"] != "":
                 hex_key = options["-hex"]
-                HMAC_MD5(data, {"encoding" : "HEX", "key" : hex_key})
+                print(HMAC_MD5(data, {"encoding" : "HEX", "key" : hex_key}))
             elif options["-ascii"] != "":
                 ascii_key = options["-ascii"]
-                HMAC_MD5(data, {"encoding" : "ASCII", "key" : ascii_key})
+                print(HMAC_MD5(data, {"encoding" : "ASCII", "key" : ascii_key}))
             else:
                 raise Exception("ERROR: no key is provided or invalid option")
         
