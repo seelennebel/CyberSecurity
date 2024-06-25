@@ -10,7 +10,7 @@ app.use(APIrouter);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "../", "static")));
+app.use(express.static(path.join(__dirname, "views")));
 
 app.set("view engine", "ejs")
 
@@ -19,5 +19,13 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile("index.html");
+    res.render(path.join(__dirname, "views", "index.ejs"), {
+        users : ""
+    });  
+});
+
+app.get("/login", (req, res) => {
+    res.render(path.join(__dirname, "views", "login.ejs"), {
+        users : ""
+    });  
 });

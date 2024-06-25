@@ -11,6 +11,6 @@ router.use(bodyParser.urlencoded({extended : true}));
 router.post("/api/user", controllers.get_user_by_name_POST);
 
 //Other paths
-router.post("/users", controllers.render_result_page_POST);
+router.post("/", controllers.render_result_page_POST);
 
 module.exports = router;
