@@ -18,14 +18,14 @@ app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 });
 
+
+// main GET routes
 app.get("/", (req, res) => {
     res.render(path.join(__dirname, "views", "index.ejs"), {
         users : ""
     });  
 });
 
-app.get("/login", (req, res) => {
-    res.render(path.join(__dirname, "views", "login.ejs"), {
-        users : ""
-    });  
+app.get("/signup", (req, res) => {
+    res.render(path.join(__dirname, "views", "signup.ejs"));  
 });

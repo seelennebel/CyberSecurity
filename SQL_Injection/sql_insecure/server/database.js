@@ -11,8 +11,14 @@ const pool = mysql.createPool({
     database: "website"
 }).promise();
 
-module.exports.getUser_by_name = async (id) => {
-    const res = await pool.query(`SELECT * FROM Users WHERE user_name LIKE "${id}"`);
+module.exports.createUser = async (user_name, email, password, language) => {
+    const res = await pool.query(`
+        INSERT INTO Users (email, user_name)
+        VALUES ("${email}", "${user_name}");
+        INSERT INTO Auth (email, password)
+        VALUES ("${email}", "${password}");
+        INSERT INTO Languages (email, language)
+        VALUES ("${email}", "${language}");`);
     return res[0];
 }
 

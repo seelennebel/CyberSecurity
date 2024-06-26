@@ -10,3 +10,11 @@ CREATE TABLE Auth (
     FOREIGN KEY (email) references Users (email)
 )
 ENGINE = InnoDB;
+
+
+CREATE TABLE Languages (
+    email VARCHAR(100) UNIQUE NOT NULL,
+    language VARCHAR(30) NOT NULL,
+    FOREIGN KEY (email) references Users (email)
+)
+ENGINE = InnoDB;

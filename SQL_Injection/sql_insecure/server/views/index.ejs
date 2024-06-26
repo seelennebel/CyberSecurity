@@ -11,14 +11,15 @@
 <body>
     <header>
         <div id = "navbar-container" class = "flex-row">
-            <div id = "forum-name">
-                <h1>Cybersecurity Forum</h1>
+            <div id = "forum-name" class = "flex-row">
+                <h1 class = "name">Cybersecurity Forum</h1>
+                <a href = "/signup" class = "name">SIGNUP</a>
             </div>
         </div>
     </header>
     <div id = "main-container" class = "flex-row">
         <div id = "sub-main-container" class = "flex-col">
-            <h1 id = "text1">Find a user =&#125;</h1>
+            <h1 id = "text1">Find users by their programming language =&#125;</h1>
             <form name = "search-bar-container" id = "search-bar-container" class = "flex-row" method = "POST" action = "/">
                 <input name = "user_name" id = "user_name" type = "text" form = "search-bar-container">
                 <button type="submit" id = "search-button" form = "search-bar-container" onclick="handle_click()">search</button>

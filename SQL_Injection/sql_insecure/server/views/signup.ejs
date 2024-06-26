@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Forum</title>
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/flexbox.css">
+</head>
+<body>
+    <script>
+        const handle_click = async () => {
+            const user_name = document.getElementById("user_name").value
+            const email = document.getElementById("email").value
+            const password = document.getElementById("password").value
+            const language = document.getElementById("language").value
+
+            const options = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({"user_name" : user_name, "email" : email, "password" : password, "language" : language})
+            };
+
+            const res = await fetch('http://localhost:8080/api/create_user', options)
+            if(res.status == 201) {
+                window.location.replace("/");
+            }
+            else {
+                document.getElementById("sign").innerHTML = "ERROR";
+            }
+        }
+    </script>
+    <header class = "flex-row">
+        <h1 id = "sign">SIGNUP</h1>
+    </header>
+    <div id = "main-container" class = "flex-row">
+        <form id = "form-container" class = "flex-col">
+            <div class = "form-element">
+                <label for = "user_name">Enter user name</label>
+                <input name = "user_name" id = "user_name">
+            </div>
+
+            <div class = "form-element">
+                <label for = "email">Enter your email</label>
+                <input name = "email" id = "email">
+            </div>
+
+            <div class = "form-element">
+                <label for = "password">Enter your password</label>
+                <input name = "password" id = "password">
+            </div>
+
+            <div class = "form-element">
+                <label for = "language">Your programming language</label>
+                <input name = "language" id = "language">
+            </div>
+
+            <button type = "button" onclick="handle_click()">SUBMIT</button>
+        </form>
+    </div>
+</body>
+</html>
