@@ -9,5 +9,6 @@ router.use(bodyParser.urlencoded({extended : true}));
 
 // API paths
 router.post("/api/create_user", controllers.create_user_POST);
+router.post("/", controllers.find_users_POST)
 
 module.exports = router;

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cybersecurity Forum</title>
-    <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/flexbox.css">
 </head>
@@ -21,9 +20,17 @@
         <div id = "sub-main-container" class = "flex-col">
             <h1 id = "text1">Find users by their programming language =&#125;</h1>
             <form name = "search-bar-container" id = "search-bar-container" class = "flex-row" method = "POST" action = "/">
-                <input name = "user_name" id = "user_name" type = "text" form = "search-bar-container">
+                <input name = "language" id = "language" type = "text" form = "search-bar-container">
                 <button type="submit" id = "search-button" form = "search-bar-container" onclick="handle_click()">search</button>
             </form>
+            <div class = "flex-col" id = "sub-main">
+                <% for(let i = 0; i < users.length; ++i) { %>
+                    <div class = "element">
+                        <h1 class = "inner-element"> <%= users[i].user_name %> </h1>
+                        <h2 class = "inner-element"> Language of choice: <%= users[i].language %> </h2>
+                    </div>
+                <% } %>
+            </div>
         </div>
     </div>
 </body>

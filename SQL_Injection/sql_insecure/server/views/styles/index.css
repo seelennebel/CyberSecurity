@@ -61,3 +61,15 @@ a
 {
     margin: 1em;
 }
+
+.element
+{
+    border: 1px white solid;
+    margin: 2em;
+}
+
+.inner-element
+{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
