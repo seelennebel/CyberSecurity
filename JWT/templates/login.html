@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1 id = "text">Login</h1>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const user = params.get("user");
+        const options = {method: 'POST'};
+
+        fetch(`http://localhost:8000/login?user=${user}`, options)
+        .then(response => {
+            if(response.status === 200) {
+                document.getElementById("text").innerHTML = "token sent"
+            }
+        })
+        .catch(err => console.error(err));
+    </script>
+</body>
+</html>

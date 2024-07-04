@@ -131,7 +131,6 @@ dist
 
 
 # PYTHON
-
 .venv
 venv
 __pycache__

@@ -4,7 +4,7 @@ import hashlib
 # size of key with added zeros = 128 bytes
 # size of pads = 128 bytes
 
-def HMAC_SHA512(data, key_option):
+def HMAC_SHA512_bytes(data, key_option):
 # initializing sha512 objects and block size variable 
     SHA512_1 = hashlib.sha512();
     SHA512_2 = hashlib.sha512();
@@ -68,5 +68,5 @@ def HMAC_SHA512(data, key_option):
 
     SHA512_2.update(outer_bytes)
 
-# returning in hex format
-    return SHA512_2.digest().hex()
+# returning in bytes object
+    return SHA512_2.digest()
