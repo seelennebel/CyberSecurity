@@ -5,10 +5,10 @@ dotenv.config();
 
 const pool = mysql.createPool({
     multipleStatements: true,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: "website"
+    host: "mysql_server",
+    database: "website",
+    user:"root",
+    password:"root"
 }).promise();
 
 module.exports.createUser = async (user_name, email, password, language) => {

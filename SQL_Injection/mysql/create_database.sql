@@ -1,3 +1,7 @@
+CREATE DATABASE website;
+
+USE website;
+
 CREATE TABLE Users (
     email VARCHAR(100) PRIMARY KEY UNIQUE NOT NULL,
     user_name VARCHAR(100) UNIQUE NOT NULL
