@@ -29,7 +29,7 @@ module.exports.findUser = async (language) => {
         SELECT Users.user_name, Languages.language
         FROM Users
         INNER JOIN Languages on Users.email = Languages.email
-        WHERE language LIKE "${language}";`)
+        WHERE language LIKE ?;`, [language])
     return res[0];
 }
 
