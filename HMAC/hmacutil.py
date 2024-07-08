@@ -14,7 +14,9 @@ def display_info():
     print("SHA512 block size in bytes:",SHA512.block_size)
     print("SHA512 digest size in bytes:", SHA512.digest_size)
     print("MD5 block size in bytes:", MD5.block_size)
-    print("MD5 digest size in bytes:", MD5.digest_size)
+    print("MD5 digest size in bytes:", MD5.digest_size, "\n")
+    print("Usage:\n")
+    print('python hmacutil.py -d <"data"> -hex/-ascii <hex number / "ascii string"> -f <sha512 / md5>', "\n")
     print("<-------------------------------------------->")
 
 if __name__ == "__main__":
@@ -80,4 +82,3 @@ if __name__ == "__main__":
         
         else:
             raise Exception("ERROR: wrong hash function")
-
