@@ -1,5 +1,3 @@
-# HMAC RFC2104
-
 from sha512 import HMAC_SHA512
 from md5 import HMAC_MD5
 
@@ -16,7 +14,7 @@ def display_info():
     print("MD5 block size in bytes:", MD5.block_size)
     print("MD5 digest size in bytes:", MD5.digest_size, "\n")
     print("Usage:\n")
-    print('python hmacutil.py -d <"data"> -hex/-ascii <hex number / "ascii string"> -f <sha512 / md5>', "\n")
+    print('python hmacutil.py -d ["data"] -hex/-ascii [hex number]/["ascii string"] -f [sha512]/[md5]\n')
     print("<-------------------------------------------->")
 
 if __name__ == "__main__":

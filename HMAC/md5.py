@@ -9,7 +9,7 @@ def HMAC_MD5(data, key_option):
 #initializing the ASCII data to bytes
     data_bytes = bytearray(data, encoding = "ASCII")
 
-# initializing ipad and opad to 128 empty bytes
+# initializing ipad and opad to empty bytes
     ipad_bytes = bytearray(block_size)
     opad_bytes = bytearray(block_size)
 
@@ -22,7 +22,7 @@ def HMAC_MD5(data, key_option):
     if key_encoding == "ASCII":
         key_bytes = bytearray(str(key), encoding = key_encoding)
 
-# adding remaining zeros to the key so that it will have a size of 128 bytes
+# adding remaining zeros to the key
     for i in range (block_size - len(key_bytes)):
         key_bytes.append(0)
 
@@ -40,7 +40,7 @@ def HMAC_MD5(data, key_option):
     tmp_inner_xor_int = key_bytes_int ^ ipad_bytes_int
     tmp_inner_xor_hex = hex(tmp_inner_xor_int)
 
-# checking if XOR result is 256 and if not it inserts zero to the first place (values remain the same even if 0 is inserted at the beginning of the hex number)
+# checking if XOR result is 128 and if not it inserts zero to the first place (values remain the same even if 0 is inserted at the beginning of the hex number)
     if len(tmp_inner_xor_hex) == 129:
         inner_xor = "0" + tmp_inner_xor_hex[2:]
         inner_bytes = bytearray.fromhex(inner_xor)
