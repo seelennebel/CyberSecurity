@@ -1,7 +1,7 @@
 import hashlib
 
 def HMAC_MD5(data, key_option):
-# initializing sha512 objects and block size variable 
+# initializing MD5 objects and block size variable 
     MD5_1 = hashlib.md5();
     MD5_2 = hashlib.md5();
     block_size = MD5_1.block_size
@@ -44,7 +44,9 @@ def HMAC_MD5(data, key_option):
     if len(tmp_inner_xor_hex) == 129:
         inner_xor = "0" + tmp_inner_xor_hex[2:]
         inner_bytes = bytearray.fromhex(inner_xor)
-
+    elif len(tmp_inner_xor_hex) > 128 and (len(tmp_inner_xor_hex) % 2) != 0:
+        inner_xor = "0" + tmp_inner_xor_hex[2:]
+        inner_bytes = bytearray.fromhex(inner_xor)
     else:
         inner_xor = tmp_inner_xor_int
         inner_bytes = bytearray.fromhex(hex(inner_xor)[2:]) # implement the initialization for ASCII key
