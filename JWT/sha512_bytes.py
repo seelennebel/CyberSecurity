@@ -1,6 +1,6 @@
 import hashlib
 
-def HMAC_SHA512(data, key_option):
+def HMAC_SHA512_bytes(data, key_option):
 # initializing sha512 objects and block size variable 
     SHA512_1 = hashlib.sha512();
     SHA512_2 = hashlib.sha512();
