@@ -1,10 +1,6 @@
 import hashlib
 
-# size of key = 128 bytes max
-# size of key with added zeros = 128 bytes
-# size of pads = 128 bytes
-
-def HMAC_SHA512_bytes(data, key_option):
+def HMAC_SHA512(data, key_option):
 # initializing sha512 objects and block size variable 
     SHA512_1 = hashlib.sha512();
     SHA512_2 = hashlib.sha512();
@@ -48,9 +44,12 @@ def HMAC_SHA512_bytes(data, key_option):
     if len(tmp_inner_xor_hex) == 255:
         inner_xor = "0" + tmp_inner_xor_hex[2:]
         inner_bytes = bytearray.fromhex(inner_xor)
+    elif len(tmp_inner_xor_hex) > 256 and (len(tmp_inner_xor_hex) % 2) != 0:
+        inner_xor = "0" + tmp_inner_xor_hex[2:]
+        inner_bytes = bytearray.fromhex(inner_xor)
     else:
         inner_xor = tmp_inner_xor_int
-        inner_bytes = bytearray.fromhex(hex(inner_xor)[2:]) # implement the initialization for ASCII key
+        inner_bytes = bytearray.fromhex(hex(inner_xor)[2:])
 
 # appending data to the previous result
     inner_bytes.extend(data_bytes)
@@ -68,5 +67,5 @@ def HMAC_SHA512_bytes(data, key_option):
 
     SHA512_2.update(outer_bytes)
 
-# returning in bytes object
+# returning in bytes format
     return SHA512_2.digest()
