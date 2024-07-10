@@ -10,12 +10,20 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const user = params.get("user");
-        const options = {method: 'POST'};
+        const options = {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                "Access-Control-Allow-Origin" : "http://127.0.0.1:8000",
+                "Access-Control-Allow-Credentials" : "true"
+            }
+        };
 
         fetch(`http://localhost:8000/login?user=${user}`, options)
         .then(response => {
             if(response.status === 200) {
-                document.getElementById("text").innerHTML = "token sent"
+                document.getElementById("text").innerHTML = "token sent";
+                console.log(response.headers.getSetCookie());
             }
         })
         .catch(err => console.error(err));
