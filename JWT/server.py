@@ -1,11 +1,11 @@
 from flask import Flask
 from flask import (request, render_template, make_response)
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 import jwt
 
 app = Flask(__name__, template_folder = "templates")
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, origins = "*")
 
 @app.route("/", methods = ["GET"])
 def home():
@@ -13,7 +13,6 @@ def home():
         return render_template("home.html")
 
 @app.route("/login", methods = ["GET", "POST"])
-@cross_origin()
 def login():
     if request.method == "GET":
         return render_template("login.html")
